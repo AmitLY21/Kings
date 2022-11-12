@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Kings</string>
+    <string name="how_to_play">How to Play</string>
+    <string name="settings">Settings</string>
+    <string name="premium">Premium</string>
+    <string name="playerListTitle">Who is DRINKING?</string>
+    <string name="enter_player_name">Enter Player Name</string>
+    <string name="start">Start</string>
+    <string name="rules">Rules!</string>
+    <string name="premium_plan">Premium Plan</string>
+    <string name="standard_plan">Standard Plan</string>
+    <string name="add_customs_missions">Add Customs Missions to do or drink</string>
+    <string name="game_name">Game Name</string>
+    <string name="player_name">Player Name</string>
+    <string name="next">Next</string>
+    <string name="ace">Ace: Waterfall - Every player begins drinking, and no one can stop until the player before them does</string>
+    <string name="two">2: You - Whoever drew the card assigns a drink</string>
+    <string name="three">3: Me - Whoever drew the card drinks</string>
+    <string name="four">4: Floor - Everyone races to touch the floor, last person to do so drinks</string>
+    <string name="five">5: Guys - All guys drink</string>
+    <string name="six">6: Chicks - All girls drink</string>
+    <string name="seven">7: Heaven - All players point towards the sky, last player to do so drinks</string>
+    <string name="eight"> 8: Mate - Pick a person to drink with</string>
+    <string name="nine">9: Rhyme - Say a phrase, and everyone else must say phrases that rhyme</string>
+    <string name="ten">10: Categories - Pick a category, and say something from that category </string>
+    <string name="jack">Jack: Never have I ever - Each player puts up 3 fingers, then starting with the person who drew the card, each player says never have I ever {something}. If you\'ve done it, you put a finger down, until someone loses</string>
+    <string name="queen">Queen: Questions - The person who drew the card asks a random person a question, and they then turn and ask a random person a question, until someone loses by either failing to ask a question or by responding to the person who just asked them a question</string>
+    <string name="king">King: Ruler - Make a rule that everyone must follow until the next King is drawn (i.e. force everyone to drink after each turn)</string>
+
+</resources>

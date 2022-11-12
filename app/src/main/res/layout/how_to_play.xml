@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:backgroundTint="@android:color/transparent"
+    app:cardCornerRadius="45dp"
+    android:elevation="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/lblHowToPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:text="@string/how_to_play"
+            android:textSize="36sp"
+            android:fontFamily="@font/montserrat"
+            android:textFontWeight="900"
+            />
+
+        <ScrollView
+            android:id="@+id/scrollPlayerList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/lblHowToPlay"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginVertical="24dp"
+            android:fillViewport="true">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblGameRules"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="@string/rules" />
+
+
+        </ScrollView>
+    </RelativeLayout>
+
+
+
+</com.google.android.material.card.MaterialCardView>
