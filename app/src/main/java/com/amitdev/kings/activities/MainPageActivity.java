@@ -1,9 +1,13 @@
 package com.amitdev.kings.activities;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -50,6 +54,23 @@ public class MainPageActivity extends AppCompatActivity {
             moveToModesPage();
         });
 
+        btnSettings.setOnClickListener(view -> openSettings());
+
+    }
+
+    //TODO: Add localization in the future
+    private void openSettings() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Settings");
+        builder.setCancelable(false);
+        builder.setNeutralButton(
+                "Hebrew",
+                (dialog, id) -> Toast.makeText(MainPageActivity.this, "Changed to Hebrew", Toast.LENGTH_SHORT).show());
+        builder.setPositiveButton(
+                "English",
+                (dialog, id) -> Toast.makeText(MainPageActivity.this, "Changed to English", Toast.LENGTH_SHORT).show());
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     private void moveToModesPage() {
@@ -63,9 +84,12 @@ public class MainPageActivity extends AppCompatActivity {
     }
 
     private void openHowtoPlayDialog() {
-        final Dialog dialog = new Dialog(MainPageActivity.this);
+        final Dialog dialog = new Dialog(MainPageActivity.this, android.R.style.Theme_Light_NoTitleBar_Fullscreen);
         dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
         dialog.setContentView(R.layout.how_to_play);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.findViewById(R.id.btnClose).setOnClickListener(view -> dialog.dismiss());
         dialog.show();
     }
 

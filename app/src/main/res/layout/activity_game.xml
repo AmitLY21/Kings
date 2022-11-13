@@ -62,7 +62,16 @@
                 android:fontFamily="@font/play_reg"
                 android:text="@string/ace"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="18sp" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgCardSymbol"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginVertical="36dp"
+                app:srcCompat="@drawable/ic_spades"
+                />
 
 
         </LinearLayout>
