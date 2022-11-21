@@ -52,6 +52,7 @@ public class ModesActivity extends AppCompatActivity {
         if(!playerList.isEmpty())
             i.putExtra("playerList",playerList);
         startActivity(i);
+        finish();
     }
 
     private void findViews() {

@@ -2,12 +2,10 @@ package com.amitdev.kings.activities;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -22,6 +20,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MainPageActivity extends AppCompatActivity {
 
@@ -30,7 +29,6 @@ public class MainPageActivity extends AppCompatActivity {
     private MaterialButton btnPremium;
     private MaterialButton btnStart;
     private TextInputLayout edtAddPlayerName;
-    private ScrollView scrollPlayerList;
     private LinearLayout llPlayerList;
     private ArrayList<String> playerList = new ArrayList<>();
 
@@ -42,17 +40,11 @@ public class MainPageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         findViews();
 
-        btnHowToPlay.setOnClickListener(view -> {
-            openHowtoPlayDialog();
-        });
+        btnHowToPlay.setOnClickListener(view -> openHowtoPlayDialog());
 
-        edtAddPlayerName.setEndIconOnClickListener(view -> {
-            addPlayer();
-        });
+        edtAddPlayerName.setEndIconOnClickListener(view -> addPlayer());
 
-        btnStart.setOnClickListener(view -> {
-            moveToModesPage();
-        });
+        btnStart.setOnClickListener(view -> moveToModesPage());
 
         btnSettings.setOnClickListener(view -> openSettings());
 
@@ -78,6 +70,7 @@ public class MainPageActivity extends AppCompatActivity {
             Intent i = new Intent(this, ModesActivity.class);
             i.putExtra("playerList", playerList);
             startActivity(i);
+            finish();
         } else {
             Toast.makeText(this, "Not enough players", Toast.LENGTH_SHORT).show();
         }
@@ -96,6 +89,7 @@ public class MainPageActivity extends AppCompatActivity {
     private void addPlayer() {
         String currPlayer = edtAddPlayerName.getEditText().getText().toString();
         currPlayer = currPlayer.trim();
+        currPlayer = currPlayer.toUpperCase(Locale.ROOT);
         if (currPlayer.isEmpty()) {
             Toast.makeText(this, "Enter Player Name!", Toast.LENGTH_SHORT).show();
         } else {
@@ -116,7 +110,6 @@ public class MainPageActivity extends AppCompatActivity {
         btnHowToPlay = findViewById(R.id.btnHowToPlay);
         btnStart = findViewById(R.id.btnStart);
         edtAddPlayerName = findViewById(R.id.edtAddPlayerName);
-        scrollPlayerList = findViewById(R.id.scrollPlayerList);
         llPlayerList = findViewById(R.id.llPlayerList);
     }
 }

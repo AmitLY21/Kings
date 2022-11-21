@@ -27,4 +27,14 @@
     <string name="king">King: Ruler - Make a rule that everyone must follow until the next King is drawn (i.e. force everyone to drink after each turn)</string>
     <string name="the_rules">Each turn, every player picks up one of the face down cards, and either drinks or gives drinks based on the action associated with said card.\nAt the end of the turn, the player puts the card underneath the beer can surrounded by face down cards, making sure not to open the can (which can be heard by air leaking out should it happen).\nIf the can is opened, that players drinks the beer, and a new one replaces it with no cards under the tab to start.\nThe game continues until all cards are drawn.\nBelow is a list of common card associations during Kings:\nAce: Waterfall - Every player begins drinking, and no one can stop until the player before them does\n2: You - Whoever drew the card assigns a drink\n3: Me - Whoever drew the card drinks\n4: Floor - Everyone races to touch the floor, last person to do so drinks\n5: Guys - All guys drink\n6: Chicks - All girls drink\n7: Heaven - All players point towards the sky, last player to do so drinks\n8: Mate - Pick a person to drink with\n9: Rhyme - Say a phrase, and everyone else must say phrases that rhyme\n10: Categories - Pick a category, and say something from that category \nJack: Never have I ever - Each player puts up 3 fingers, then starting with the person who drew the card, each player says \'never have I ever «something»\'. If you\'ve done it, you put a finger down, until someone loses\nQueen: Questions - The person who drew the card asks a random person a question, and they then turn and ask a random person a question, until someone loses by either failing to ask a question or by responding to the person who just asked them a question\nKing: Ruler - Make a rule that everyone must follow until the next King is drawn (i.e. force everyone to drink after each turn)\n</string>
 
+    <string-array name="missions">
+        <item>Arm wrestle with the player next to your right , the loser drink a shot</item>
+        <item name="mission_2">Flip the cup - try to flip an upside down cup from the edge of the table , if you lose fill your drink</item>
+        <item name="mission_3">The Thumbs Game - choose a player to match against , the loser drink a shot</item>
+        <item name="mission_4">Two truth and a lie - If the table is guessing right your lie you must drink a shot else all the table need to drink</item>
+        <item name="mission_5">Blinking Battle - The first who blinks drinks!</item>
+        <item name="mission_6">Mission 6 work in progress</item>
+        <item name="mission_7">Mission 7 work in progress</item>
+        <item name="mission_8">Mission 8 work in progress</item>
+    </string-array>
 </resources>

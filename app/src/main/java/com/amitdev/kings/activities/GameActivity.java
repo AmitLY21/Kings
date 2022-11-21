@@ -16,8 +16,11 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textview.MaterialTextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Random;
 
 import GameLogic.Card;
 import GameLogic.CardParser;
@@ -37,6 +40,7 @@ public class GameActivity extends AppCompatActivity {
     private final Deck deck = new Deck();
     private final CardParser cardParser = new CardParser();
     private int doOrDrinkCounter = 0;
+    private List<String> missions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,20 +48,20 @@ public class GameActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_game);
+        missions = Arrays.asList(this.getResources().getStringArray(R.array.missions));
+
         findViews();
         setVarsFromIntent();
         nextCardHelper();
 
-        btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mode.equals("REG")) {
-                    nextCard();
-                }else{ //PREMIUM
-                    doOrDrinkCounter++;
-                    if(doOrDrinkCounter%8==0){
-                        doOrDrinkMission();
-                    }
+        btnNext.setOnClickListener(view -> {
+            if (mode.equals("REG")) {
+                nextCard();
+            }else{ //PREMIUM
+                doOrDrinkCounter++;
+                if(doOrDrinkCounter%8==0){
+                    doOrDrinkMission();
+                }else{
                     nextCard();
                 }
             }
@@ -65,6 +69,16 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void doOrDrinkMission() {
+        Random r = new Random();
+
+        int randomitem = r.nextInt(missions.size());
+        String randomElement = missions.get(randomitem);
+        int randomPlayerIndex = r.nextInt(playerList.size());
+        String randomPlayerName = playerList.get(randomPlayerIndex);
+        lblPlayerName.setText(randomPlayerName);
+        lblCardDescription.setText(randomElement);
+        imgCardSymbol.setImageDrawable(getDrawable(R.drawable.ic_spy));
+
         //TODO: create do or drink mission and show them on card!
         Log.d(TAG, "doOrDrinkMission: had been invoked, Current Counter:" + doOrDrinkCounter);
     }
@@ -104,7 +118,15 @@ public class GameActivity extends AppCompatActivity {
                     break;
             }
         }else{
-            //finished cards!
+            lblPlayerName.setText("Finished Game");
+            lblCardDescription.setText("Drink Safely");
+            btnNext.setText("Start Over");
+            imgCardSymbol.setImageDrawable(getDrawable(R.drawable.ic_crown));
+            btnNext.setOnClickListener(view -> {
+                Intent i = new Intent(this,MainPageActivity.class);
+                startActivity(i);
+                finish();
+            });
         }
     }
 
