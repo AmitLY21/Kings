@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -50,19 +51,24 @@ public class MainPageActivity extends AppCompatActivity {
 
     }
 
-    //TODO: Add localization in the future
     private void openSettings() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Settings");
         builder.setCancelable(false);
         builder.setNeutralButton(
-                "Hebrew",
-                (dialog, id) -> Toast.makeText(MainPageActivity.this, "Changed to Hebrew", Toast.LENGTH_SHORT).show());
+                "Privacy Policy",
+                (dialog, id) -> openUrl(getString(R.string.privacy_url)));//Toast.makeText(MainPageActivity.this, "Changed to Hebrew", Toast.LENGTH_SHORT).show());
         builder.setPositiveButton(
-                "English",
-                (dialog, id) -> Toast.makeText(MainPageActivity.this, "Changed to English", Toast.LENGTH_SHORT).show());
+                "Terms & Conditions",
+                (dialog, id) -> openUrl(getString(R.string.terms_url)));//Toast.makeText(MainPageActivity.this, "Changed to English", Toast.LENGTH_SHORT).show());
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    private void openUrl(String url) {
+        Uri uri = Uri.parse(url); // missing 'http://' will cause crashed
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
     }
 
     private void moveToModesPage() {

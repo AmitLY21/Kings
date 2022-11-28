@@ -12,6 +12,9 @@ public class Card {
         this.symbol = symbol;
     }
 
+    public Card(String cardDescription) {
+    }
+
     public int getNumber() {
         return number;
     }

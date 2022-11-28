@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#001220"
+    android:orientation="vertical"
+    tools:context=".activities.AddCustomsMissionActivity">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lblCustomMission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/play_bold"
+        android:text="@string/add_custom_mission"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="18dp"
+        android:layout_weight="9"
+        android:backgroundTint="#2d3142"
+        app:cardCornerRadius="24dp">
+
+        <LinearLayout
+            android:id="@+id/gameCard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblPlayerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/play_reg"
+                android:text="@string/describe_your_mission"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="36dp"
+                android:layout_marginVertical="12dp"
+                android:background="@color/white" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edtMissionDescription"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="32dp"
+                android:layout_weight="1"
+                android:hint="@string/super_duper_awesome_mission"
+                android:textColorHint="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgCardSymbol"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginVertical="36dp"
+                app:srcCompat="@drawable/ic_baseline_military_tech" />
+
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAddMission"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="36dp"
+        android:layout_marginVertical="24dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/play_reg"
+        android:text="@string/add_mission"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:strokeColor="@color/white"
+        app:strokeWidth="2dp" />
+
+
+</LinearLayout>

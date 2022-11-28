@@ -13,7 +13,9 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 
 public class ModesActivity extends AppCompatActivity {
-    enum eMode {REG,PREMIUM};
+    enum eMode {REG, PREMIUM}
+
+    ;
     private MaterialButton btnBack;
     private MaterialButton btnStartRegKings;
     private MaterialButton btnStartPremiumKings;
@@ -36,21 +38,32 @@ public class ModesActivity extends AppCompatActivity {
         });
 
         btnStartRegKings.setOnClickListener(view -> {
-            moveToGameActivity(eMode.REG , btnStartRegKings.getText().toString());
+            moveToGameActivity(eMode.REG, btnStartRegKings.getText().toString());
         });
 
         btnStartPremiumKings.setOnClickListener(view -> {
             moveToGameActivity(eMode.PREMIUM, btnStartPremiumKings.getText().toString());
         });
 
+        btnAddCustomsMissions.setOnClickListener(view -> {
+            moveToCustomsActivity(eMode.PREMIUM);
+        });
+
+    }
+
+    private void moveToCustomsActivity(eMode mode) {
+        Intent i = new Intent(this, AddCustomsMissionActivity.class);
+        i.putExtra("Mode", mode.name());
+        startActivity(i);
+        finish();
     }
 
     private void moveToGameActivity(eMode mode, String gameName) {
-        Intent i = new Intent(this,GameActivity.class);
-        i.putExtra("Mode",mode.name());
-        i.putExtra("gameName",gameName);
-        if(!playerList.isEmpty())
-            i.putExtra("playerList",playerList);
+        Intent i = new Intent(this, GameActivity.class);
+        i.putExtra("Mode", mode.name());
+        i.putExtra("gameName", gameName);
+        if (!playerList.isEmpty())
+            i.putExtra("playerList", playerList);
         startActivity(i);
         finish();
     }
