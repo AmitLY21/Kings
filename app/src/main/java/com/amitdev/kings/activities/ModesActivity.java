@@ -13,9 +13,8 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 
 public class ModesActivity extends AppCompatActivity {
-    enum eMode {REG, PREMIUM}
+    enum eMode {REG, PREMIUM};
 
-    ;
     private MaterialButton btnBack;
     private MaterialButton btnStartRegKings;
     private MaterialButton btnStartPremiumKings;
@@ -32,6 +31,10 @@ public class ModesActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         this.playerList = i.getStringArrayListExtra("playerList");
+
+        //if user not premium grey out buttons for premium plan
+        //disablePremiumPlan();
+
 
         btnBack.setOnClickListener(view -> {
             finish();
@@ -51,11 +54,17 @@ public class ModesActivity extends AppCompatActivity {
 
     }
 
+    private void disablePremiumPlan() {
+        btnAddCustomsMissions.setAlpha(.5f);
+        btnAddCustomsMissions.setClickable(false);
+        btnStartPremiumKings.setAlpha(.5f);
+        btnStartPremiumKings.setClickable(false);
+    }
+
     private void moveToCustomsActivity(eMode mode) {
         Intent i = new Intent(this, AddCustomsMissionActivity.class);
         i.putExtra("Mode", mode.name());
         startActivity(i);
-        finish();
     }
 
     private void moveToGameActivity(eMode mode, String gameName) {

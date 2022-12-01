@@ -13,12 +13,13 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 import GameLogic.CustomCards;
+import common.Constants;
 
 public class AddCustomsMissionActivity extends AppCompatActivity {
-    private String mode;
     private MaterialButton btnAddMission;
+    private MaterialButton btnBackMissions;
+    private MaterialButton btnDeleteAllMissions;
     private TextInputLayout edtMissionDescription;
-
     private CustomCards customCards;
 
     @Override
@@ -32,13 +33,22 @@ public class AddCustomsMissionActivity extends AppCompatActivity {
         setVarsFromIntent();
         findViews();
 
+        btnBackMissions.setOnClickListener(view -> {
+            finish();
+        });
         btnAddMission.setOnClickListener(view -> {
-            if (getMissionDescription().equals("failed")) {
+            if (getMissionDescription().equals(Constants.FAIL)) {
                 Toast.makeText(view.getContext(), "Enter Card Mission", Toast.LENGTH_SHORT).show();
             } else {
                 customCards.addNewMissionCard(getMissionDescription());
+                edtMissionDescription.getEditText().setText("");
                 Toast.makeText(view.getContext(), "Mission Added Successfully", Toast.LENGTH_SHORT).show();
             }
+        });
+
+        btnDeleteAllMissions.setOnClickListener(view -> {
+            customCards.deleteAllMissions();
+            Toast.makeText(view.getContext(), "All Missions Deleted Successfully", Toast.LENGTH_SHORT).show();
         });
 
     }
@@ -48,18 +58,18 @@ public class AddCustomsMissionActivity extends AppCompatActivity {
         if (!mission.isEmpty()) {
             return mission;
         } else {
-            return "failed";
+            return Constants.FAIL;
         }
     }
 
     private void findViews() {
         this.edtMissionDescription = findViewById(R.id.edtMissionDescription);
         this.btnAddMission = findViewById(R.id.btnAddMission);
+        this.btnDeleteAllMissions = findViewById(R.id.btnDeleteAllMissions);
+        this.btnBackMissions = findViewById(R.id.btnBackMissions);
     }
 
     private void setVarsFromIntent() {
         Intent i = getIntent();
-        mode = i.getStringExtra("Mode");
-
     }
 }

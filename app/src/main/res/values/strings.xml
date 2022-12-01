@@ -32,15 +32,13 @@
     <string name="super_duper_awesome_mission">Super Duper Awesome Mission!!!</string>
     <string name="add_mission">Add Mission</string>
     <string name="add_custom_mission">Add Custom Mission</string>
+    <string name="delete_all_missions">Delete All Missions</string>
 
     <string-array name="missions">
-        <item>Arm wrestle with the player next to your right , the loser drink a shot</item>
+        <item name="mission_1">Arm wrestle with the player next to your right , the loser drink a shot</item>
         <item name="mission_2">Flip the cup - try to flip an upside down cup from the edge of the table , if you lose fill your drink</item>
         <item name="mission_3">The Thumbs Game - choose a player to match against , the loser drink a shot</item>
         <item name="mission_4">Two truth and a lie - If the table is guessing right your lie you must drink a shot else all the table need to drink</item>
         <item name="mission_5">Blinking Battle - The first who blinks drinks!</item>
-        <item name="mission_6">Mission 6 work in progress</item>
-        <item name="mission_7">Mission 7 work in progress</item>
-        <item name="mission_8">Mission 8 work in progress</item>
     </string-array>
 </resources>

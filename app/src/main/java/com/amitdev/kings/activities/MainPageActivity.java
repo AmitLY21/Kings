@@ -23,6 +23,8 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import common.Constants;
+
 public class MainPageActivity extends AppCompatActivity {
 
     private MaterialButton btnSettings;

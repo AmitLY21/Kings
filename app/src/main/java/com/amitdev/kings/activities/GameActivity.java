@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -24,11 +23,12 @@ import java.util.Random;
 
 import GameLogic.Card;
 import GameLogic.CardParser;
+import GameLogic.CustomCards;
 import GameLogic.Deck;
+import common.Constants;
 
 
 public class GameActivity extends AppCompatActivity {
-    private final String TAG = "Kings ->";
     private int playersCounter = 0;
     private String mode;
     private MaterialTextView lblGameName;
@@ -37,6 +37,7 @@ public class GameActivity extends AppCompatActivity {
     private ShapeableImageView imgCardSymbol;
     private MaterialButton btnNext;
     private ArrayList<String> playerList = new ArrayList<>();
+    private CustomCards customCards;
     private final Deck deck = new Deck();
     private final CardParser cardParser = new CardParser();
     private int doOrDrinkCounter = 0;
@@ -48,26 +49,39 @@ public class GameActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_game);
-        missions = Arrays.asList(this.getResources().getStringArray(R.array.missions));
+
+        this.missions = new ArrayList<String>(Arrays.asList(this.getResources().getStringArray(R.array.missions)));
+        this.customCards = new CustomCards(this);
 
         findViews();
+        concatAllMissions();
         setVarsFromIntent();
         nextCardHelper();
 
         btnNext.setOnClickListener(view -> {
-            if (mode.equals("REG")) {
+            if (mode.equals(Constants.REG)) {
                 nextCard();
-            }else{ //PREMIUM
+            } else { //PREMIUM
                 doOrDrinkCounter++;
-                if(doOrDrinkCounter%8==0){
+                if (doOrDrinkCounter % 8 == 0) {
                     doOrDrinkMission();
-                }else{
+                } else {
                     nextCard();
                 }
             }
         });
     }
 
+    private void concatAllMissions() {
+        ArrayList<String> customMissions = this.customCards.fetchMissions();
+        Log.d(Constants.TAG, "concatAllMissions: " + customMissions.toString());
+        Log.d(Constants.TAG, "concatAllMissions: " + this.missions);
+        this.missions.addAll(customMissions);
+        Log.d(Constants.TAG, "concatAllMissions After concatenating: " + this.missions);
+
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void doOrDrinkMission() {
         Random r = new Random();
 
@@ -78,9 +92,7 @@ public class GameActivity extends AppCompatActivity {
         lblPlayerName.setText(randomPlayerName);
         lblCardDescription.setText(randomElement);
         imgCardSymbol.setImageDrawable(getDrawable(R.drawable.ic_spy));
-
-        //TODO: create do or drink mission and show them on card!
-        Log.d(TAG, "doOrDrinkMission: had been invoked, Current Counter:" + doOrDrinkCounter);
+        Log.d(Constants.TAG, "doOrDrinkMission: had been invoked, Current Counter:" + doOrDrinkCounter);
     }
 
     private void nextCard() {
@@ -88,16 +100,16 @@ public class GameActivity extends AppCompatActivity {
             playersCounter = 0;
             lblPlayerName.setText(playerList.get(playersCounter));
 
-        }else {
+        } else {
             playersCounter++;
             lblPlayerName.setText(playerList.get(playersCounter));
         }
         nextCardHelper();
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
+    @SuppressLint({"UseCompatLoadingForDrawables", "SetTextI18n"})
     private void nextCardHelper() {
-        if(!deck.getDeckOfCards().empty()) {
+        if (!deck.getDeckOfCards().empty()) {
             Card currCard = deck.getDeckOfCards().pop();
             Map<Integer, String> currCardData = cardParser.parseCard(currCard);
             String description = getString(Integer.parseInt(Objects.requireNonNull(currCardData.get(currCard.getNumber()))));
@@ -117,13 +129,13 @@ public class GameActivity extends AppCompatActivity {
                     imgCardSymbol.setImageDrawable(getDrawable(R.drawable.ic_hearts));
                     break;
             }
-        }else{
+        } else {
             lblPlayerName.setText("Finished Game");
             lblCardDescription.setText("Drink Safely");
             btnNext.setText("Start Over");
             imgCardSymbol.setImageDrawable(getDrawable(R.drawable.ic_crown));
             btnNext.setOnClickListener(view -> {
-                Intent i = new Intent(this,MainPageActivity.class);
+                Intent i = new Intent(this, MainPageActivity.class);
                 startActivity(i);
                 finish();
             });
