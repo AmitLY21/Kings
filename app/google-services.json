@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "794567981446",
+    "project_id": "kings-70721",
+    "storage_bucket": "kings-70721.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:794567981446:android:1106981322bbd0f842d407",
+        "android_client_info": {
+          "package_name": "com.amitdev.kings"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "794567981446-4vrcfou3c7bititscga86b1ee5u167cd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxTvenJ2oprvEyw_U-h_2IPIO-JuHaenw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "794567981446-4vrcfou3c7bititscga86b1ee5u167cd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

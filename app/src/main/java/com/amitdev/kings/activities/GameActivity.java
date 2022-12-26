@@ -7,9 +7,17 @@ import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.amitdev.kings.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textview.MaterialTextView;
@@ -41,7 +49,9 @@ public class GameActivity extends AppCompatActivity {
     private final Deck deck = new Deck();
     private final CardParser cardParser = new CardParser();
     private int doOrDrinkCounter = 0;
+    private int standardCounter = 0;
     private List<String> missions;
+    private InterstitialAd mInterstitial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +64,19 @@ public class GameActivity extends AppCompatActivity {
         this.customCards = new CustomCards(this);
 
         findViews();
+        initInterstitial();
         concatAllMissions();
         setVarsFromIntent();
         nextCardHelper();
 
         btnNext.setOnClickListener(view -> {
             if (mode.equals(Constants.REG)) {
+                if (standardCounter % 4 == 0) {
+                    showInterstitial();
+                    loadAd();
+                }
                 nextCard();
+                standardCounter++;
             } else { //PREMIUM
                 doOrDrinkCounter++;
                 if (doOrDrinkCounter % 8 == 0) {
@@ -70,6 +86,44 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void showInterstitial() {
+        if (mInterstitial != null) {
+            mInterstitial.show(GameActivity.this);
+        } else {
+            Log.d(Constants.TAG, "The interstitial ad wasn't ready yet.");
+        }
+    }
+
+    private void initInterstitial() {
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        loadAd();
+    }
+
+    private void loadAd() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        // The mInterstitialAd reference will be null until
+                        // an ad is loaded.
+                        mInterstitial = interstitialAd;
+                        Log.i(Constants.TAG, "onAdLoaded");
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error
+                        Log.d(Constants.TAG, loadAdError.toString());
+                        mInterstitial = null;
+                    }
+                });
     }
 
     private void concatAllMissions() {

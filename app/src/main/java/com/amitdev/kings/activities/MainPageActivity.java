@@ -14,9 +14,15 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.amitdev.kings.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -26,7 +32,7 @@ import java.util.Locale;
 import common.Constants;
 
 public class MainPageActivity extends AppCompatActivity {
-
+    private AdView adView;
     private MaterialButton btnSettings;
     private MaterialButton btnHowToPlay;
     private MaterialButton btnPremium;
@@ -42,6 +48,7 @@ public class MainPageActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         findViews();
+        loadAds();
 
         btnHowToPlay.setOnClickListener(view -> openHowtoPlayDialog());
 
@@ -51,6 +58,19 @@ public class MainPageActivity extends AppCompatActivity {
 
         btnSettings.setOnClickListener(view -> openSettings());
 
+    }
+
+    private void loadAds() {
+        adView = new AdView(this);
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
+            }
+        });
+
+        adView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
     }
 
     private void openSettings() {
