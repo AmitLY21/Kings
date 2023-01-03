@@ -76,7 +76,7 @@ public class MainPageActivity extends AppCompatActivity {
     private void openSettings() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Settings");
-        builder.setCancelable(false);
+        builder.setCancelable(true);
         builder.setNeutralButton(
                 "Privacy Policy",
                 (dialog, id) -> openUrl(getString(R.string.privacy_url)));//Toast.makeText(MainPageActivity.this, "Changed to Hebrew", Toast.LENGTH_SHORT).show());
