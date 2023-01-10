@@ -34,6 +34,7 @@ import GameLogic.CardParser;
 import GameLogic.CustomCards;
 import GameLogic.Deck;
 import common.Constants;
+import common.TinyDB;
 
 
 public class GameActivity extends AppCompatActivity {
@@ -52,6 +53,7 @@ public class GameActivity extends AppCompatActivity {
     private int standardCounter = 0;
     private List<String> missions;
     private InterstitialAd mInterstitial;
+    private TinyDB tinyDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,25 +61,30 @@ public class GameActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_game);
-
+        this.tinyDB = new TinyDB(this);
         this.missions = new ArrayList<String>(Arrays.asList(this.getResources().getStringArray(R.array.missions)));
         this.customCards = new CustomCards(this);
-
+        boolean isUltimate = this.tinyDB.getBoolean(Constants.ULTIMATE);
+        boolean isPremium = this.tinyDB.getBoolean(Constants.TWIST);
+        boolean isNoAds = this.tinyDB.getBoolean(Constants.NO_ADS);
         findViews();
         initInterstitial();
         concatAllMissions();
         setVarsFromIntent();
         nextCardHelper();
 
+        //Game Loop
         btnNext.setOnClickListener(view -> {
-            if (mode.equals(Constants.REG)) {
-                if (standardCounter % 4 == 0) {
-                    showInterstitial();
-                    loadAd();
+            if (mode.equals(ModesActivity.eMode.REG.name())) {
+                if (!isNoAds) {
+                    if (standardCounter % 4 == 0) {
+                        showInterstitial();
+                        loadAd();
+                    }
                 }
                 nextCard();
                 standardCounter++;
-            } else { //PREMIUM
+            } else if (isPremium || isUltimate) { //PREMIUM
                 doOrDrinkCounter++;
                 if (doOrDrinkCounter % 8 == 0) {
                     doOrDrinkMission();

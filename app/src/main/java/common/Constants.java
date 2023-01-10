@@ -11,4 +11,7 @@ public final class Constants {
     public static final String TAG= "Kings";
     public static final String REG = "REG";
     public static final String PREMIUM = "PREMIUM";
+    public static final String NO_ADS = "remove_ads";
+    public static final String TWIST = "kings_twist";
+    public static final String ULTIMATE = "ultimate_pack";
 }

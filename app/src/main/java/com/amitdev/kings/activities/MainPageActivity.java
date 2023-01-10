@@ -7,10 +7,11 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import common.Constants;
+import common.TinyDB;
 
 public class MainPageActivity extends AppCompatActivity {
     private AdView adView;
@@ -40,6 +42,21 @@ public class MainPageActivity extends AppCompatActivity {
     private TextInputLayout edtAddPlayerName;
     private LinearLayout llPlayerList;
     private ArrayList<String> playerList = new ArrayList<>();
+    private TinyDB tinyDB;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        boolean isUltimate = tinyDB.getBoolean(Constants.ULTIMATE);
+        boolean isNoAds = tinyDB.getBoolean(Constants.NO_ADS);
+        if (!isUltimate && !isNoAds) {
+            loadAds();
+        } else {
+            this.adView.setVisibility(View.GONE);
+        }
+
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +64,12 @@ public class MainPageActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+        this.tinyDB = new TinyDB(this);
+        this.adView = new AdView(this);
+
+        Log.d(Constants.TAG_SP, "All db onCreate:" + this.tinyDB.getAll().toString());
+
         findViews();
-        loadAds();
 
         btnHowToPlay.setOnClickListener(view -> openHowtoPlayDialog());
 
@@ -58,10 +79,16 @@ public class MainPageActivity extends AppCompatActivity {
 
         btnSettings.setOnClickListener(view -> openSettings());
 
+        btnPremium.setOnClickListener(view -> moveToPurchasePage());
+
+    }
+
+    private void moveToPurchasePage() {
+        Intent i = new Intent(this, PurchaseActivity.class);
+        startActivity(i);
     }
 
     private void loadAds() {
-        adView = new AdView(this);
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
