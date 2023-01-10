@@ -7,7 +7,6 @@
   <img src="https://user-images.githubusercontent.com/62396197/211593569-4210c606-dac4-42b4-8b8d-74378b5417de.png" width="150">
   <img src="https://user-images.githubusercontent.com/62396197/211593575-6377ee3f-e847-449b-ba6e-abae9ec678e1.png" width="150">
   <img src="https://user-images.githubusercontent.com/62396197/211593580-7ede2a93-0df8-43b6-8d5e-5931c092926a.png" width="150">
-
 </p>
 
 #### 🎉 Customize the game with your own cards and secret missions! 🎉
@@ -27,7 +26,10 @@ As this game is alcohol-related, it should be used only by adult that have reach
 
 
 
-
+#### Game Icon:
+<p align="left">
+  <img src="https://user-images.githubusercontent.com/62396197/211600760-3d3dd201-4685-4f2e-b710-b5f0d708a24b.png" width="150" height="150">
+</p>
 
 
 
