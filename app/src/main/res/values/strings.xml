@@ -33,6 +33,17 @@
     <string name="add_mission">Add Mission</string>
     <string name="add_custom_mission">Add Custom Mission</string>
     <string name="delete_all_missions">Delete All Missions</string>
+    <string name="store">Store</string>
+    <string name="purchase">Purchase</string>
+    <string name="remove_ads">Remove Ads</string>
+    <string name="removing_all_ads_from_the_application_for_lifetime">Removing all ads from the application for lifetime!</string>
+    <string name="kings_with_a_twist">Kings with a Twist and You can add customs cards to your gameplay!</string>
+    <string name="secret_mission_cards_included">Secret mission cards included!</string>
+    <string name="add_custom_cards">Add custom cards</string>
+    <string name="purchase_all_of_the_above">Purchase all of the above!</string>
+    <string name="ultimate_pack">Ultimate Pack</string>
+    <string name="crown">crown</string>
+    <string name="kings_twist">Kings Twist</string>
 
     <string-array name="missions">
         <item name="mission_1">Arm wrestle with the player next to your right , the loser drink a shot</item>

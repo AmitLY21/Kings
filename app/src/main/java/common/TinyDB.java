@@ -295,6 +295,7 @@ public class TinyDB {
      * @return boolean value at 'key' or false if key not found
      */
     public boolean getBoolean(String key) {
+        Log.d(Constants.TAG_SP, "getBoolean of " + key + " is " + preferences.getBoolean(key, false));
         return preferences.getBoolean(key, false);
     }
 
