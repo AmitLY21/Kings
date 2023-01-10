@@ -1,7 +1,7 @@
 # Kings
 A social drinking game based on Kings with a TWIST!
 
-<p float="left">
+
   <img src="![Google Pixel 4 XL Screenshot 0](https://user-images.githubusercontent.com/62396197/211593521-8a136d4e-acc5-400c-b06b-9f2e889d2a26.png)" width="100" />
   <img src="![Google Pixel 4 XL Screenshot 1](https://user-images.githubusercontent.com/62396197/211593556-cdba59b8-beca-48bc-a54f-97b7ec57ced8.png)" width="100" />
   <img src="![Google Pixel 4 XL Screenshot 2](https://user-images.githubusercontent.com/62396197/211593569-4210c606-dac4-42b4-8b8d-74378b5417de.png)" width="100" />
